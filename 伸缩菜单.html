@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>伸缩菜单</title>
+	<meta name="keywords" content="关键字列表" />
+	<meta name="description" content="网页描述" />
+	<link rel="stylesheet" type="text/css" href="" />
+	<style type="text/css">
+		body,p,ul,li{padding:0px;margin:0px;}
+		ul li{list-style:none;}
+		body{font-size:13px;}
+		.menu{
+			width:210px;
+			margin:50px auto;
+			border:1px solid #ccc;
+		}
+		.menu p{
+			height:25px;
+			line-height:25px;
+			font-weight:bold;
+			background:#eee;
+			border-bottom:1px solid #ccc;
+			padding-left:5px;
+			cursor:pointer;
+		}
+		.menu ul{display:none;}
+		.menu ul li{
+			height:24px;
+			line-height:24px;
+			padding-left:5px;
+		}
+	</style>
+	
+</head>
+<body>
+	<div id="menu" class="menu">
+		<div>
+			<p>web前端</p>
+			<ul style="display:none;">
+				<li>HTML1</li>
+				<li>DIV+CSS</li>
+				<li>JAVASCRIPT</li>
+				<li>jQuery</li>
+				<li>Bootstrap</li>
+			</ul>
+            <p>PHP</p>
+			<ul style="display:none;">
+				<li>HTML2</li>
+				<li>DIV+CSS</li>
+				<li>JAVASCRIPT</li>
+				<li>jQuery</li>
+				<li>Bootstrap</li>
+			</ul>
+		</div>
+	</div>
+    <script>
+       // 获取p标签给其注册点击事件 
+	   var ps = document.querySelector('#menu').querySelectorAll('p');
+	   // 获取所有的 ul标签 
+	   var ulsObj = document.querySelector('#menu').querySelectorAll('ul');
+	   // 给p标签注册点击事件  
+	   for(let i = 0;i<ps.length;i++){
+		   ps[i].onclick = function(){
+			   // 当鼠标点击p标签要判断它下面的兄弟元素 ul是不是显示的 如果是就隐藏 如果是隐藏的 就显示 
+			   let ulObj = this.nextElementSibling;
+			   if(ulObj.style.display == 'block'){
+				   ulObj.style.display = "none";
+			   }else {
+				// 在将自己显示出来之前  先将所有的ul隐藏 
+				for(let j = 0;j<ulsObj.length;j++){
+					ulsObj[j].style.display = "none";
+				}
+				ulObj.style.display = "block";
+			   }
+		   }
+	   }
+    </script>
+</body>
+</html>
